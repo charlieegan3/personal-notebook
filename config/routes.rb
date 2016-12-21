@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root 'application#index'
+  root 'sections#index'
 
   devise_for :users
+
+  resources :sections
+  resources :notes
 end

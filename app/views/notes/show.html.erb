@@ -1,0 +1,15 @@
+<h1><%= @note.title %></h1>
+
+<p>
+  <%= link_to 'Edit', edit_note_path(@note) %> |
+  <%= link_to 'Back', notes_path %>
+</p>
+
+<p>
+  <strong>Section:</strong>
+  <%= link_to @note.section.name, @note.section %>
+</p>
+
+<div>
+  <%= @note.content %>
+</div>
