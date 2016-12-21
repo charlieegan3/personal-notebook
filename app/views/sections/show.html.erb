@@ -1,4 +1,4 @@
-<h1><%= @section.name %></h1>
+<h1 class="data"><%= @section.name %></h1>
 <p>
   <%= link_to 'Edit', edit_section_path(@section) %> |
   <%= link_to 'Back', sections_path %>
@@ -7,7 +7,7 @@
 <p>
   <strong>Parent:</strong>
   <% if @section.parent.present? %>
-    <%= link_to @section.parent.name, @section.parent if @section.parent %>
+    <%= link_to @section.parent.name, @section.parent, class: 'data' %>
   <% else %>
     <%= link_to 'Sections Index', sections_path %>
   <% end %>
@@ -28,7 +28,7 @@
   <tbody>
     <% @section.children.each do |section| %>
       <tr>
-        <td><%= link_to section.name, section %></td>
+        <td><%= link_to section.name, section, class: 'data' %></td>
         <td><%= section.child_count %></td>
         <td><%= section.note_count %></td>
         <td><%= link_to 'Edit', edit_section_path(section) %></td>
@@ -53,7 +53,7 @@
   <tbody>
     <% @section.notes.each do |note| %>
       <tr>
-        <td><%= link_to note.title, note %></td>
+        <td><%= link_to note.title, note, class: :data %></td>
         <td><%= distance_of_time_in_words(note.created_at, Time.zone.now) %></td>
         <td><%= link_to 'Edit', edit_note_path(note) %></td>
         <td><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>

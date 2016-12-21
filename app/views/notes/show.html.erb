@@ -1,4 +1,4 @@
-<h1><%= @note.title %></h1>
+<h1 class="data"><%= @note.title %></h1>
 
 <p>
   <%= link_to 'Edit', edit_note_path(@note) %> |
@@ -10,6 +10,6 @@
   <%= link_to @note.section.name, @note.section %>
 </p>
 
-<div>
+<div class="data">
   <%= @note.content %>
 </div>

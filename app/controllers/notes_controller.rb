@@ -1,12 +1,6 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
 
-  # GET /notes
-  # GET /notes.json
-  def index
-    @notes = Note.all
-  end
-
   # GET /notes/1
   # GET /notes/1.json
   def show
@@ -42,9 +36,10 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1.json
   def update
     respond_to do |format|
+      target = @note.section.present? ? @note.section : @note
       if @note.update(note_params)
-        format.html { redirect_to @note, notice: 'Note was successfully updated.' }
-        format.json { render :show, status: :ok, location: @note }
+        format.html { redirect_to target, notice: 'Note was successfully updated.' }
+        format.json { render :show, status: :ok, location: target }
       else
         format.html { render :edit }
         format.json { render json: @note.errors, status: :unprocessable_entity }
@@ -55,9 +50,10 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   # DELETE /notes/1.json
   def destroy
+    target_path = @note.section.present? ? section_path(@note.section) : sections_path
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to notes_url, notice: 'Note was successfully destroyed.' }
+      format.html { redirect_to target_path, notice: 'Note was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

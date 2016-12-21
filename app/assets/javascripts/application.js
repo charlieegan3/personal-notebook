@@ -14,3 +14,51 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+function encrypt_input(sender, key) {
+  $(sender).find(".input_data").each(function(index) {
+    $(this).val(sjcl.encrypt(key, $(this).val()));
+  });
+}
+
+function decrypt_data(key) {
+  $(".input_data").each(function() {
+    try {
+      if ($(this).val().length > 0) {
+        var decrypted = sjcl.decrypt(key, $(this).val());
+        $(this).val(decrypted);
+      }
+    } catch (e) { /* can't decrypt */ }
+  });
+
+  $(".data").each(function() {
+    try {
+      var decrypted = sjcl.decrypt(key, $(this).text());
+      $(this).text(decrypted);
+    } catch (e) { /* can't decrypt */ }
+  });
+}
+
+$(document).on('ready page:load turbolinks:load', function() {
+  var key = localStorage.getItem("key");
+  decrypt_data(key);
+
+  $('#key').on('input', function() {
+    localStorage.setItem("key", $("#key").val());
+  });
+
+  $('#show_key').on('click', function() {
+    var key = localStorage.getItem("key");
+    $("#key").val(key);
+  });
+
+  $('.encrypted_submit').submit(function(e) {
+    e.preventDefault();
+
+    var key = localStorage.getItem("key");
+
+    encrypt_input(e, key);
+
+    $(this).unbind('submit').submit();
+  });
+});
