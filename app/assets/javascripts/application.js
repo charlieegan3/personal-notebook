@@ -57,7 +57,7 @@ $(document).on('ready page:load turbolinks:load', function() {
 
     var key = localStorage.getItem("key");
 
-    encrypt_input(e, key);
+    encrypt_input(e.target, key);
 
     $(this).unbind('submit').submit();
   });

@@ -6,6 +6,8 @@ class Section < ApplicationRecord
 
   has_many :notes, dependent: :destroy
 
+  validates :name, format: { with: /\A\{/, message: "Encrypted JSON" }
+
   def note_count
     notes.count
   end
