@@ -7,24 +7,4 @@
 
 <p><%= link_to 'New Section', new_section_path %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Children</th>
-      <th>Notes</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @sections.each do |section| %>
-      <tr>
-        <td><%= link_to section.name, section, class: :data %></td>
-        <td><%= section.child_count %></td>
-        <td><%= section.note_count %></td>
-        <td><%= link_to 'Edit', edit_section_path(section) %></td>
-        <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'sections/list', sections: @sections %>

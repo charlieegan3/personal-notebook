@@ -2,12 +2,12 @@
 
 <p>
   <%= link_to 'Edit', edit_note_path(@note) %> |
-  <%= link_to 'Back', notes_path %>
+  <%= link_to 'Back', @note.section %>
 </p>
 
 <p>
   <strong>Section:</strong>
-  <%= link_to @note.section.name, @note.section %>
+  <%= link_to @note.section.name, @note.section, class: :data %>
 </p>
 
 <div class="data">

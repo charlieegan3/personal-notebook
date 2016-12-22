@@ -1,0 +1,8 @@
+<ul>
+  <% sections.each do |section| %>
+    <li>
+      <%= link_to section.name, section, class: :data %>
+      <%= render 'sections/list', sections: section.children unless section.children.empty?%>
+    </li>
+  <% end %>
+</ul>
