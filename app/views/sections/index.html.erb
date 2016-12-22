@@ -1,5 +1,4 @@
-<h1>Notebook</h1>
-
+<h1>Account</h1>
 <p>
   <%= link_to current_user.email, edit_user_registration_path %> |
   <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
@@ -10,6 +9,6 @@
   <button id="show_key">Show</button>
 </p>
 
-<p><%= link_to 'New Section', new_section_path %></p>
-
+<h1>Notebook</h1>
+<%= render 'sections/form', section: Section.new %>
 <%= render 'sections/list', sections: @sections %>
