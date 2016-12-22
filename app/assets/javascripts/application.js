@@ -40,9 +40,6 @@ function decrypt_data(key) {
 }
 
 $(document).on('ready page:load turbolinks:load', function() {
-  var key = localStorage.getItem("key");
-  decrypt_data(key);
-
   $('#key').on('input', function() {
     localStorage.setItem("key", $("#key").val());
   });
@@ -61,4 +58,8 @@ $(document).on('ready page:load turbolinks:load', function() {
 
     $(this).unbind('submit').submit();
   });
+
+  var key = localStorage.getItem("key");
+  decrypt_data(key);
+  setTimeout(decrypt_data(key), 500);
 });
