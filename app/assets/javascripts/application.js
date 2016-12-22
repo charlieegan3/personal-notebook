@@ -69,4 +69,10 @@ $(document).on('ready page:load turbolinks:load', function() {
   var key = localStorage.getItem("key");
   decrypt_data(key);
   setTimeout(decrypt_data(key), 500);
+
+  if (key == null || key == "") {
+    $("#key").attr("placeholder", "You must set a key here");
+  } else {
+    $("#key").attr("placeholder", key.length.toString() + " character key hidden");
+  }
 });
