@@ -66,7 +66,7 @@ class SectionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_section
-      @section = Section.includes(:children, :notes).find(params[:id])
+      @section = Section.includes(:children, :notes).order('notes.created_at DESC').find(params[:id])
       redirect_to sections_path, notice: 'Nope.' unless @section.user == current_user
     end
 

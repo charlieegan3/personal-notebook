@@ -34,7 +34,13 @@ function decrypt_data(key) {
   $(".data").each(function() {
     try {
       var decrypted = sjcl.decrypt(key, $(this).text());
-      $(this).text(decrypted);
+
+      if ($(this).hasClass("markdown")) {
+        var html = markdown.toHTML(decrypted);
+        $(this).html(html);
+      } else {
+        $(this).text(decrypted);
+      }
     } catch (e) { /* can't decrypt */ }
   });
 }
@@ -42,6 +48,7 @@ function decrypt_data(key) {
 $(document).on('ready page:load turbolinks:load', function() {
   $('#key').on('input', function() {
     localStorage.setItem("key", $("#key").val());
+    decrypt_data($("#key").val());
   });
 
   $('#show_key').on('click', function() {

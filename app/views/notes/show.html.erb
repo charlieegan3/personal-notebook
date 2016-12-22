@@ -1,15 +1,16 @@
+<p>
+  Up to: <%= link_to @note.section.name, @note.section, class: :data %>
+</p>
+
 <h1 class="data"><%= @note.title %></h1>
 
 <p>
-  <%= link_to 'Edit', edit_note_path(@note) %> |
-  <%= link_to 'Back', @note.section %>
+  <%= link_to 'Edit', edit_note_path(@note) %>
+  <%= link_to 'Destroy', @note, method: :delete, data: { confirm: 'Are you sure?' } %>
 </p>
 
-<p>
-  <strong>Section:</strong>
-  <%= link_to @note.section.name, @note.section, class: :data %>
-</p>
+<hr/>
 
-<div class="data">
+<div class="data markdown">
   <%= @note.content %>
 </div>
