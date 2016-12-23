@@ -43,6 +43,12 @@ function decrypt_data(key) {
       }
     } catch (e) { /* can't decrypt */ }
   });
+
+  $(".markdown p, .markdown li").click(function() {
+    $(this).attr("data-clipboard-text", $(this).text().trim());
+    $("#clipboard").html("Copied! (" + $(this).text().trim() + ")");
+  });
+  new Clipboard(".markdown p, .markdown li");
 }
 
 $(document).on('ready page:load turbolinks:load', function() {
@@ -64,12 +70,6 @@ $(document).on('ready page:load turbolinks:load', function() {
     encrypt_input(e.target, key);
 
     $(this).unbind('submit').submit();
-  });
-
-  new Clipboard(".markdown p, .markdown li");
-  $(".markdown p, .markdown li").click(function() {
-    $(this).attr("data-clipboard-text", $(this).text().trim());
-    $("#clipboard").html("Copied! (" + $(this).text().trim() + ")");
   });
 
   var key = localStorage.getItem("key");
