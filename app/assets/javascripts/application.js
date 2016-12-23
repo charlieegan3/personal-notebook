@@ -36,7 +36,8 @@ function decrypt_data(key) {
       var decrypted = sjcl.decrypt(key, $(this).text());
 
       if ($(this).hasClass("markdown")) {
-        var html = markdown.toHTML(decrypted);
+        var converter = new showdown.Converter();
+        var html = converter.makeHtml(decrypted);
         $(this).html(html);
       } else {
         $(this).text(decrypted);
