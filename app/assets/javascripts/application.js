@@ -66,6 +66,12 @@ $(document).on('ready page:load turbolinks:load', function() {
     $(this).unbind('submit').submit();
   });
 
+  new Clipboard(".markdown p, .markdown li");
+  $(".markdown p, .markdown li").click(function() {
+    $(this).attr("data-clipboard-text", $(this).text().trim());
+    $("#clipboard").html("Copied! (" + $(this).text().trim() + ")");
+  });
+
   var key = localStorage.getItem("key");
   decrypt_data(key);
   setTimeout(decrypt_data(key), 500);
