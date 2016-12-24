@@ -1,13 +1,6 @@
 class SectionsController < ApplicationController
   before_action :set_section, only: [:show, :edit, :update, :destroy]
 
-  # GET /sections
-  # GET /sections.json
-  def index
-    @notes = Note.where(user: current_user).order(updated_at: :desc).limit(5)
-    @sections = Section.includes(:children, :notes).where(parent_id: nil, user: current_user)
-  end
-
   # GET /sections/1
   # GET /sections/1.json
   def show
@@ -68,7 +61,7 @@ class SectionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_section
       @section = Section.includes(:children, :notes).order('notes.created_at DESC').find(params[:id])
-      redirect_to sections_path, notice: 'Nope.' unless @section.user == current_user
+      redirect_to root_path, notice: 'Nope.' unless @section.user == current_user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

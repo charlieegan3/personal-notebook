@@ -49,7 +49,7 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   # DELETE /notes/1.json
   def destroy
-    target_path = @note.section.present? ? section_path(@note.section) : sections_path
+    target_path = @note.section.present? ? section_path(@note.section) : root_path
     @note.destroy
     respond_to do |format|
       format.html { redirect_to target_path, notice: 'Note was successfully destroyed.' }
@@ -61,7 +61,7 @@ class NotesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_note
       @note = Note.find(params[:id])
-      redirect_to sections_path, notice: 'Nope.' unless @note.user == current_user
+      redirect_to root_path, notice: 'Nope.' unless @note.user == current_user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

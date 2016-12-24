@@ -3,7 +3,7 @@
   <% if @section.parent.present? %>
     <%= link_to @section.parent.name, @section.parent, class: 'data' %>
   <% else %>
-    <%= link_to 'Sections Index', sections_path %>
+    <%= link_to 'Notebook', root_path %>
   <% end %>
 </p>
 
