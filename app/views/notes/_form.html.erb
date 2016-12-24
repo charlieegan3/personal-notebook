@@ -23,7 +23,14 @@
     <%= f.text_area :content, id: :note_content, class: :input_data, rows: 20 %>
   </div>
 
-  <%= f.hidden_field :section_id, value: note.section.id %>
+  <% if edit_section %>
+    <div class="field">
+      <%= f.label :section %>
+      <%= f.text_field :section_id, placeholder: 'Section ID' %>
+    </div>
+  <% else %>
+    <%= f.hidden_field :section_id, value: note.section.id %>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>
