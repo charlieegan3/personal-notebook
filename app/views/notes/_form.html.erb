@@ -19,7 +19,8 @@
   <div class="field">
     <%= f.label :content %>
     <button id="expand_textarea" type="button">Expand</button>
-    <%= f.text_area :content, class: :input_data, rows: 20 %>
+    <button id="generate_password" type="button">Generate Password</button>
+    <%= f.text_area :content, id: :note_content, class: :input_data, rows: 20 %>
   </div>
 
   <%= f.hidden_field :section_id, value: note.section.id %>
