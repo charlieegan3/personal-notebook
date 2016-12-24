@@ -19,5 +19,5 @@
 <%= render 'sections/list', sections: @section.children %>
 
 <h2>Notes</h2>
-<%= render 'notes/form', note: Note.new(section: @section), edit_section: false %>
+<%= render 'notes/form', note: Note.new(section: @section) %>
 <%= render 'notes/list', notes: @section.notes unless @section.notes.empty? %>

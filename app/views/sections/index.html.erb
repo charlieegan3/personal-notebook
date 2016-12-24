@@ -1,15 +1,8 @@
-<h1>Account</h1>
-<p>
-  <%= link_to current_user.email, edit_user_registration_path %> |
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-</p>
-
-<p>
-  <input id="key" type="text" placeholder="Client-side key"/>
-  <button id="show_key">Reveal</button>
-</p>
+<%= render 'shared/account' %>
 
 <h1>Notebook</h1>
+<%= link_to 'Multi Edit', multi_edit_path %>
+
 <h2>Sections</h2>
 <%= render 'sections/form', section: Section.new %>
 <%= render 'sections/list', sections: @sections %>

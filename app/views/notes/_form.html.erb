@@ -1,3 +1,5 @@
+<% options ||= {} %>
+
 <%= form_for(note, html: { class: 'encrypted_submit' }) do |f| %>
   <% if note.errors.any? %>
     <div id="error_explanation">
@@ -18,12 +20,14 @@
 
   <div class="field">
     <%= f.label :content %>
-    <button id="expand_textarea" type="button">Expand</button>
-    <button id="generate_password" type="button">Generate Password</button>
+    <% unless options[:minimal] %>
+      <%= button_tag('Expand', type: :button, id: :expand_textarea) %>
+      <%= button_tag 'Generate Password', type: :button, id: :generate_password %>
+    <% end %>
     <%= f.text_area :content, id: :note_content, class: :input_data, rows: 20 %>
   </div>
 
-  <% if edit_section %>
+  <% if options[:edit_section] %>
     <div class="field">
       <%= f.label :section %>
       <%= f.text_field :section_id, placeholder: 'Section ID' %>
@@ -33,6 +37,6 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit unless options[:minimal] %>
   </div>
 <% end %>

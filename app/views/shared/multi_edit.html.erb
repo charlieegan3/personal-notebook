@@ -1,0 +1,15 @@
+<%= render 'shared/account' %>
+
+<button id="save_all">Save All</button>
+
+<% @sections.each do |section| %>
+  <hr/>
+  <h4>Section <%= section.id %></h4>
+  <%= render 'sections/form', section: section %>
+<% end %>
+
+<% @notes.each do |note| %>
+  <hr/>
+  <h4>Note <%= note.id %></h4>
+  <%= render 'notes/form', note: note, options: { edit_section: false, minimal: true } %>
+<% end %>
