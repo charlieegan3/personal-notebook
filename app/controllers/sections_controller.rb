@@ -5,7 +5,7 @@ class SectionsController < ApplicationController
   # GET /sections.json
   def index
     @notes = Note.where(user: current_user).order(updated_at: :desc).limit(5)
-    @sections = Section.includes(:children).where(parent_id: nil, user: current_user)
+    @sections = Section.includes(:children, :notes).where(parent_id: nil, user: current_user)
   end
 
   # GET /sections/1
