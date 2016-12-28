@@ -1,0 +1,15 @@
+{
+  "name": "Personal Notebook",
+  "description": "Notebook with client-side encryption",
+  "repository": "https://github.com/charlieegan3/personal-notebook",
+  "image": "heroku/ruby",
+  "scripts": {
+    "postdeploy": "bundle exec rails db:migrate"
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql"
+    }
+  ],
+  "keywords": ["ruby", "rails", "secure", "notebook", "note", "encryption"]
+}
