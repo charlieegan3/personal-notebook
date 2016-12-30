@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :notes, except: [:index]
 
   get 'multi_edit' => 'shared#multi_edit'
+  get 'export' => 'shared#multi_edit', defaults: { format: :json }
 end

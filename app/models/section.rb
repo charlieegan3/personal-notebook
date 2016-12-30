@@ -15,4 +15,8 @@ class Section < ApplicationRecord
   def child_count
     children.count
   end
+
+  def export_parent_name
+    parent ? parent.name : 'root'
+  end
 end
