@@ -10,11 +10,11 @@
   </head>
 
   <body>
-    <%= link_to 'Notebook', root_path %> |
-    <%= link_to 'Multi-Edit', multi_edit_path %>
-
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+
+    <%= link_to "Home", root_url %> |
+    <%= link_to "Account", account_path %>
 
     <%= yield %>
   </body>

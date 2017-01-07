@@ -1,17 +1,18 @@
-<%= render 'shared/account' %>
-
 <h1>Notebook</h1>
 <%= link_to 'Multi Edit', multi_edit_path %> |
 <%= link_to 'Export', export_path %> |
 <%= link_to 'Import', import_path %>
 
+<% if @insecure_notes + @insecure_sections > 0 %>
 <p>
   Insecure Sections: <%= @insecure_sections %>
   Insecure Notes: <%= @insecure_notes %>
 </p>
+<% end %>
 
 <h2>Sections</h2>
 <%= render 'sections/form', section: Section.new %>
+<br/>
 <%= render 'sections/list', sections: @sections %>
 
 <h2>Recent Notes</h2>

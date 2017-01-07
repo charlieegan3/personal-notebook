@@ -12,4 +12,7 @@ class SharedController < ApplicationController
     @insecure_sections = @sections.select { |s| s.name[0] != "{" }.size
     @insecure_notes = all_notes.select { |n| n.title[0] != "{" || n.content[0] != "{" }.size
   end
+
+  def account
+  end
 end
