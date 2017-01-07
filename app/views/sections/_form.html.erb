@@ -1,3 +1,5 @@
+<% options ||= {} %>
+
 <%= form_for(section, html: { class: 'encrypted_submit' }) do |f| %>
   <% if section.errors.any? %>
     <div id="error_explanation">
@@ -13,8 +15,18 @@
 
   <div class="field">
     <%= f.text_field :name, placeholder: 'Section Name', class: :input_data %>
-    <%= f.submit %>
   </div>
 
-  <%= f.hidden_field :parent_id, value: section.parent.id if section.parent %>
+  <% if options[:edit_parent] %>
+    <div class="field">
+      <%= f.label :parent %>
+      <%= f.text_field :parent_id, placeholder: 'Parent Section ID' %>
+    </div>
+  <% else %>
+    <%= f.hidden_field :parent_id, value: section.parent ? section.parent.id : nil%>
+  <% end %>
+
+  <div>
+    <%= f.submit %>
+  </div>
 <% end %>

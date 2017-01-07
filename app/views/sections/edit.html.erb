@@ -1,6 +1,6 @@
 <h1>Editing Section</h1>
 
-<%= render 'form', section: @section %>
+<%= render 'form', section: @section, options: { edit_parent: true } %>
 
 <%= link_to 'Show', @section %> |
 <%= link_to 'Back', @section.parent || root_path %>
