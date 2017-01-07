@@ -16,24 +16,34 @@
 //= require_tree .
 
 function encrypt_input(sender, key) {
-  $(sender).find(".input_data").each(function(index) {
-    if ($(this).val() != "") {
+  $(sender).find(".input_data:not(.encrypted)").each(function(index) {
+    if ($(this).val() != "" && $(this).val()[0] != "{") {
       $(this).val(sjcl.encrypt(key, $(this).val()));
+    } else {
+      $(this).val(sjcl.encrypt(key, "Empty"));
     }
+    $(this).addClass("encrypted");
   });
 }
 
 function decrypt_data(key) {
-  $(".input_data").each(function() {
+  $(".input_data:not(.decrypted)").each(function() {
     try {
       if ($(this).val().length > 0) {
         var decrypted = sjcl.decrypt(key, $(this).val());
         $(this).val(decrypted);
       }
-    } catch (e) { /* can't decrypt */ }
+    } catch (e) {
+      console.log($(this).val());
+      console.log(e);
+      $(this).css("border-color", "red");
+    }
+    if ($(this).val()[0] != "{") {
+      $(this).addClass("decrypted");
+    };
   });
 
-  $(".data").each(function() {
+  $(".data:not(.decrypted)").each(function() {
     try {
       var decrypted = sjcl.decrypt(key, $(this).text());
 
@@ -44,7 +54,14 @@ function decrypt_data(key) {
       } else {
         $(this).text(decrypted);
       }
-    } catch (e) { /* can't decrypt */ }
+    } catch (e) {
+      console.log($(this).text());
+      console.log(e);
+      $(this).css("color", "red");
+    }
+    if ($(this).text()[0] != "{") {
+      $(this).addClass("decrypted");
+    }
   });
 
   $(".markdown p, .markdown li").click(function() {

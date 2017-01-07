@@ -8,4 +8,7 @@ Rails.application.routes.draw do
 
   get 'multi_edit' => 'shared#multi_edit'
   get 'export' => 'shared#multi_edit', defaults: { format: :json }
+
+  get 'import' => 'import#form'
+  post 'import' => 'import#import'
 end

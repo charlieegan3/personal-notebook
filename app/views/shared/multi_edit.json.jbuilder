@@ -4,7 +4,7 @@ json.sections do
   json.array! @sections do |section|
     json.id Digest::SHA1.hexdigest(section.id.to_s)
     json.name section.name
-    json.parent_id Digest::SHA1.hexdigest(section.parent_id.to_s)
+    json.parent_id section.export_parent_string
   end
 end
 

@@ -1,0 +1,9 @@
+<h1>Import Notebook JSON</h1>
+
+<%= form_tag import_path do %>
+  <div class="field">
+    <%= label_tag 'JSON' %>
+    <%= text_area_tag :json %>
+  </div>
+  <%= submit_tag 'Import' %>
+<% end %>

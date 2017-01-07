@@ -6,8 +6,6 @@ class Section < ApplicationRecord
 
   has_many :notes, dependent: :destroy
 
-  validates :name, format: { with: /\A\{/, message: "Encrypted JSON" }
-
   def note_count
     notes.count
   end
@@ -16,7 +14,7 @@ class Section < ApplicationRecord
     children.count
   end
 
-  def export_parent_name
-    parent ? parent.name : 'root'
+  def export_parent_string
+    parent ? Digest::SHA1.hexdigest(parent_id.to_s) : 'root'
   end
 end
