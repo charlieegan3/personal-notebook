@@ -71,7 +71,7 @@ function decrypt_data(key) {
   new Clipboard(".markdown p, .markdown li");
 }
 
-$(document).on('ready page:load turbolinks:load', function() {
+$(document).on('turbolinks:load', function() {
   $('#key').on('input', function() {
     localStorage.setItem("key", $("#key").val());
     decrypt_data($("#key").val());
