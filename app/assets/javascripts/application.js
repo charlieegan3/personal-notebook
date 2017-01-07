@@ -17,7 +17,9 @@
 
 function encrypt_input(sender, key) {
   $(sender).find(".input_data").each(function(index) {
-    $(this).val(sjcl.encrypt(key, $(this).val()));
+    if ($(this).val() != "") {
+      $(this).val(sjcl.encrypt(key, $(this).val()));
+    }
   });
 }
 
