@@ -50,9 +50,10 @@ class SectionsController < ApplicationController
   # DELETE /sections/1
   # DELETE /sections/1.json
   def destroy
+    target = @section.parent ? section_path(@section.parent) : root_url
     @section.destroy
     respond_to do |format|
-      format.html { redirect_to sections_url, notice: 'Section was successfully destroyed.' }
+      format.html { redirect_to target, notice: 'Section was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
