@@ -4,7 +4,4 @@
   <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 </p>
 
-<p>
-  <input id="key" type="text" placeholder="Client-side key"/>
-  <button id="show_key">Reveal</button>
-</p>
+<%= render 'shared/account_form' %>
