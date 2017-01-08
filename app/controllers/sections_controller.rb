@@ -1,9 +1,14 @@
 class SectionsController < ApplicationController
-  before_action :set_section, only: [:show, :edit, :update, :destroy]
+  before_action :set_section, only: [:show, :edit, :update, :destroy, :multi_edit]
 
   # GET /sections/1
   # GET /sections/1.json
   def show
+  end
+
+  def multi_edit
+    @sections = [@section]
+    @notes = @section.notes
   end
 
   # GET /sections/new

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :sections, except: [:index]
+  resources :sections, except: [:index] do
+    get :multi_edit, on: :member
+  end
   resources :notes, except: [:index]
 
   get 'import' => 'import#form'
