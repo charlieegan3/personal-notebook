@@ -16,11 +16,13 @@
 //= require_tree .
 
 function encrypt_input(sender, key) {
+  var cryptoConfig = { count: 2048, ks: 256 };
+
   $(sender).find(".input_data:not(.encrypted)").each(function(index) {
     if ($(this).val() != "" && $(this).val()[0] != "{") {
-      $(this).val(sjcl.encrypt(key, $(this).val()));
+      $(this).val(sjcl.encrypt(key, $(this).val(), cryptoConfig));
     } else {
-      $(this).val(sjcl.encrypt(key, "Empty"));
+      $(this).val(sjcl.encrypt(key, "Empty", cryptoConfig));
     }
     $(this).addClass("encrypted");
   });
