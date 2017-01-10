@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   get 'export' => 'shared#multi_edit', defaults: { format: :json }
   get 'account' => 'shared#account'
 
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
 
   resources :sections, except: [:index]
   resources :notes, except: [:index]
