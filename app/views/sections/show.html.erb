@@ -9,7 +9,8 @@
 
 <h1 class="data"><%= @section.name %></h1>
 <p>
-  <%= link_to 'Edit Section', edit_section_path(@section) %>
+  <%= link_to 'Edit Section', edit_section_path(@section) %> |
+  <%= link_to 'Multi-Edit Section', multi_edit_section_path(@section) %> |
   <%= link_to 'Destroy', @section, method: :delete, data: { confirm: 'Are you sure?' } %>
 </p>
 
