@@ -21,9 +21,6 @@
   <div class="field">
     <%= f.label :content %>
     <%= f.text_area :content, id: :note_content, class: :input_data, rows: 3 %>
-    <% unless options[:minimal] %>
-      <%= button_tag('Expand', type: :button, id: :expand_textarea) %>
-    <% end %>
   </div>
 
   <% if options[:edit_section] %>

@@ -15,6 +15,9 @@
 
   <div class="field">
     <%= f.text_field :name, placeholder: 'Section Name', class: :input_data %>
+    <% unless options[:edit_parent] %>
+      <%= f.submit %>
+    <% end %>
   </div>
 
   <% if options[:edit_parent] %>
@@ -27,6 +30,8 @@
   <% end %>
 
   <div>
-    <%= f.submit %>
+    <% if options[:edit_parent] %>
+      <%= f.submit %>
+    <% end %>
   </div>
 <% end %>

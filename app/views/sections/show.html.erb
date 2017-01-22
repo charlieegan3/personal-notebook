@@ -16,8 +16,8 @@
 
 
 <h2>Child sections</h2>
-<%= render 'sections/form', section: Section.new(parent: @section) %>
 <%= render 'sections/list', sections: @section.children %>
+<%= render 'sections/form', section: Section.new(parent: @section) %>
 
 <h2>Notes</h2>
 <%= render 'notes/form', note: Note.new(section: @section) %>
