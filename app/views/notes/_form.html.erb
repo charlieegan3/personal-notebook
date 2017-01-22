@@ -20,11 +20,10 @@
 
   <div class="field">
     <%= f.label :content %>
+    <%= f.text_area :content, id: :note_content, class: :input_data, rows: 3 %>
     <% unless options[:minimal] %>
       <%= button_tag('Expand', type: :button, id: :expand_textarea) %>
-      <%= button_tag 'Generate Password', type: :button, id: :generate_password %>
     <% end %>
-    <%= f.text_area :content, id: :note_content, class: :input_data, rows: 20 %>
   </div>
 
   <% if options[:edit_section] %>
