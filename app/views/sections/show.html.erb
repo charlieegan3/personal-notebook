@@ -1,24 +1,41 @@
-<p>
-  Up to:
-  <% if @section.parent.present? %>
-    <%= link_to @section.parent.name, @section.parent, class: 'data' %>
-  <% else %>
-    <%= link_to 'Notebook', root_path %>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+      <%= link_to "Notebook", root_path, class: 'breadcrumb-item' %>
+  </li>
+
+  <% ancestors = [] %>
+  <% if parent = @section.parent %>
+    <li class="breadcrumb-item">
+      <% while parent.present? %>
+        <% ancestors << parent %>
+        <% parent = parent.parent %>
+      <% end %>
+
+      <% ancestors.reverse.each do |a| %>
+        <%= link_to a.name, a, class: 'breadcrumb-item data' %>
+      <% end %>
+    </li>
   <% end %>
-</p>
+  <li class="breadcrumb-item active data"><%= @section.name %></li>
+</ol>
 
-<h1 class="data"><%= @section.name %></h1>
-<p>
-  <%= link_to 'Edit Section', edit_section_path(@section) %> |
-  <%= link_to 'Multi-Edit Section', multi_edit_section_path(@section) %> |
-  <%= link_to 'Destroy', @section, method: :delete, data: { confirm: 'Are you sure?' } %>
-</p>
+<div class="row">
+  <div class="col-md-6">
+    <h1 class="data"><%= @section.name %></h1>
+    <p>
+      <%= link_to 'Edit Section', edit_section_path(@section), class: "btn btn-sm btn-outline-success" %>
+      <%= link_to 'Multi-Edit Section', multi_edit_section_path(@section), class: "btn btn-sm btn-outline-primary" %>
+      <%= link_to 'Destroy', @section, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-danger" %>
+    </p>
 
+    <%= render 'sections/form', section: Section.new(parent: @section) %>
 
-<h2>Child sections</h2>
-<%= render 'sections/list', sections: @section.children %>
-<%= render 'sections/form', section: Section.new(parent: @section) %>
+    <%= render 'notes/form', note: Note.new(section: @section) %>
+  </div>
 
-<h2>Notes</h2>
-<%= render 'notes/form', note: Note.new(section: @section) %>
-<%= render 'notes/list', notes: @section.notes unless @section.notes.empty? %>
+  <div class="col-md-6">
+    <%= render 'sections/list', sections: @section.children %>
+    <%= render 'notes/list', notes: @section.notes unless @section.notes.empty? %>
+  </div>
+</div>
+

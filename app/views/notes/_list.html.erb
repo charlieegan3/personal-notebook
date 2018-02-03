@@ -1,9 +1,9 @@
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
       <th>Created</th>
-      <th colspan="2"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -12,8 +12,10 @@
       <tr>
         <td><%= link_to note.title, note, class: :data %></td>
         <td><%= distance_of_time_in_words(note.created_at, Time.zone.now) %></td>
-        <td><%= link_to 'Edit', edit_note_path(note) %></td>
-        <td><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to 'Edit', edit_note_path(note), class: "btn btn-sm btn-outline-primary" %>
+          <%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-danger" %>
+        </td>
       </tr>
     <% end %>
   </tbody>

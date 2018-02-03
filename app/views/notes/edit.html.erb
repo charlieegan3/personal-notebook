@@ -1,6 +1,7 @@
 <h1>Editing Note</h1>
 
+<%= link_to 'Show', @note, class: "btn btn-sm btn-outline-primary" %>
+<%= link_to 'Back', @note.section, class: "btn btn-sm btn-outline-primary" %>
+
 <%= render 'form', note: @note, options: { edit_section: true } %>
 
-<%= link_to 'Show', @note %> |
-<%= link_to 'Back', @note.section %>

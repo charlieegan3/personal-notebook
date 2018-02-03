@@ -1,16 +1,32 @@
-<h1>Notebook</h1>
-<%= link_to 'Multi Edit', multi_edit_path %> |
-<%= link_to 'Export', export_path %> |
-<%= link_to 'Import', import_path %>
-
-<h2>Sections</h2>
-<%= render 'sections/form', section: Section.new %>
-<br/>
-<%= render 'sections/list', sections: @sections %>
-
-<h2>Recent Notes</h2>
-<ul>
-  <% @notes.each do |note| %>
-    <li><%= link_to note.title, note, class: :data %></li>
-  <% end %>
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <%= link_to "Account", account_path, class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'Multi Edit', multi_edit_path, class: "nav-link"  %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'Export', export_path, class: "nav-link"  %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'Import', import_path, class: "nav-link"  %>
+  </li>
 </ul>
+
+<div class="row">
+  <div class="col-md-6">
+    <h2>Sections</h2>
+    <%= render 'sections/form', section: Section.new %>
+    <br/>
+    <%= render 'sections/list', sections: @sections %>
+  </div>
+  <div class="col-md-6">
+    <h2>Recent Notes</h2>
+    <ul>
+      <% @notes.each do |note| %>
+        <li><%= link_to note.title, note, class: :data %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+

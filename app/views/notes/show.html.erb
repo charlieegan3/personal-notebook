@@ -1,12 +1,29 @@
-<p>
-  Up to: <%= link_to @note.section.name, @note.section, class: :data %>
-</p>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+      <%= link_to "Notebook", root_path, class: 'breadcrumb-item' %>
+  </li>
+
+  <% ancestors = [] %>
+  <% if parent = @note.section %>
+    <li class="breadcrumb-item">
+      <% while parent.present? %>
+        <% ancestors << parent %>
+        <% parent = parent.parent %>
+      <% end %>
+
+      <% ancestors.reverse.each do |a| %>
+        <%= link_to a.name, a, class: 'breadcrumb-item data' %>
+      <% end %>
+    </li>
+  <% end %>
+  <li class="breadcrumb-item active">Note</li>
+</ol>
 
 <h1 class="data"><%= @note.title %></h1>
 
 <p>
-  <%= link_to 'Edit', edit_note_path(@note) %>
-  <%= link_to 'Destroy', @note, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Edit', edit_note_path(@note), class: "btn btn-sm btn-outline-primary" %>
+  <%= link_to 'Destroy', @note, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-danger" %>
 </p>
 
 <hr/>

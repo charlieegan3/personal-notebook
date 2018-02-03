@@ -15,24 +15,24 @@
 
   <div class="field">
     <%= f.label :title %>
-    <%= f.text_field :title, class: :input_data, placeholder: 'Note', value: note.field_value %>
+    <%= f.text_field :title, class: "input_data form-control", placeholder: 'Note', value: note.field_value %>
   </div>
 
   <div class="field">
     <%= f.label :content %>
-    <%= f.text_area :content, id: :note_content, class: "input_data content_field", rows: 3 %>
+    <%= f.text_area :content, id: :note_content, class: "form-control input_data content_field", rows: 3 %>
   </div>
 
   <% if options[:edit_section] %>
     <div class="field">
       <%= f.label :section %>
-      <%= f.text_field :section_id, placeholder: 'Section ID' %>
+      <%= f.text_field :section_id, placeholder: 'Section ID', class: "form-control" %>
     </div>
   <% else %>
     <%= f.hidden_field :section_id, value: note.section.id %>
   <% end %>
 
   <div class="actions">
-    <%= f.submit unless options[:minimal] %>
+    <%= f.submit class: "btn btn-sm btn-primary" unless options[:minimal] %>
   </div>
 <% end %>

@@ -1,6 +1,6 @@
 <h1>Editing Section</h1>
 
-<%= render 'form', section: @section, options: { edit_parent: true } %>
+<%= link_to 'Show', @section, class: "btn btn-sm btn-outline-primary" %>
+<%= link_to 'Back', @section.parent || root_path, class: "btn btn-sm btn-outline-primary" %>
 
-<%= link_to 'Show', @section %> |
-<%= link_to 'Back', @section.parent || root_path %>
+<%= render 'form', section: @section, options: { edit_parent: true } %>

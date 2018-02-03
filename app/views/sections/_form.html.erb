@@ -14,16 +14,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.text_field :name, placeholder: 'Section Name', class: :input_data %>
+    <%= f.text_field :name, placeholder: 'Section Name', class: "form-control input_data" %>
     <% unless options[:edit_parent] %>
-      <%= f.submit %>
+      <%= f.submit class: "btn btn-sm btn-primary" %>
     <% end %>
   </div>
 
   <% if options[:edit_parent] %>
     <div class="field">
       <%= f.label :parent %>
-      <%= f.text_field :parent_id, placeholder: 'Parent Section ID' %>
+      <%= f.text_field :parent_id, placeholder: 'Parent Section ID', class: 'form-control' %>
     </div>
   <% else %>
     <%= f.hidden_field :parent_id, value: section.parent ? section.parent.id : nil%>
@@ -31,7 +31,7 @@
 
   <div>
     <% if options[:edit_parent] %>
-      <%= f.submit %>
+      <%= f.submit class: "btn btn-sm btn-primary" %>
     <% end %>
   </div>
 <% end %>
