@@ -75,12 +75,6 @@ function decrypt_data(key) {
       $(this).addClass("decrypted");
     }
   });
-
-  $(".markdown p, .markdown li").click(function() {
-    $(this).attr("data-clipboard-text", $(this).text().trim());
-    $("#clipboard").html("Copied! (" + $(this).text().trim() + ")");
-  });
-  new Clipboard(".markdown p, .markdown li");
 }
 
 $(document).on('turbolinks:load', function() {
