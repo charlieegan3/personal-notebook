@@ -16,16 +16,6 @@
 //= require bootstrap
 //= require_tree .
 
-function format_input(sender) {
-  $(sender).find(".input_data.content_field:not(.encrypted)").each(function(index) {
-    var content = $(this).val();
-    content = content.replace(/[^\(]http\S+/g, function(m) {
-      return " [" + m.replace(/https?:\/\//, "").trim() + "](" + m.trim() + ")"
-    });
-    $(this).val(content);
-  });
-}
-
 function encrypt_input(sender, key) {
   var cryptoConfig = { count: 2048, ks: 256 };
 
@@ -37,6 +27,12 @@ function encrypt_input(sender, key) {
     }
     $(this).addClass("encrypted");
   });
+}
+
+function format_decrypted(input) {
+	return input.replace(/http\S+/g, function(m) {
+      return " [" + m.replace(/https?:\/\//, "").trim() + "](" + m.trim() + ")"
+    });
 }
 
 function decrypt_data(key) {
@@ -59,6 +55,7 @@ function decrypt_data(key) {
   $(".data:not(.decrypted)").each(function() {
     try {
       var decrypted = sjcl.decrypt(key, $(this).text());
+	  decrypted = format_decrypted(decrypted);
 
       if ($(this).hasClass("markdown")) {
         var html = markdown.toHTML(decrypted);
@@ -93,7 +90,6 @@ $(document).on('turbolinks:load', function() {
 
     var key = localStorage.getItem("key");
 
-    format_input(e.target);
     encrypt_input(e.target, key);
 
     $(this).unbind('submit').submit();
