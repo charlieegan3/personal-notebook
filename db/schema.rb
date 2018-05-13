@@ -10,32 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180127220843) do
+ActiveRecord::Schema.define(version: 20161221190339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "cloudinary_images", force: :cascade do |t|
-    t.string   "identifier"
-    t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "items", force: :cascade do |t|
-    t.string   "url"
-    t.string   "title"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "source"
-    t.boolean  "topped"
-    t.string   "comment_url"
-    t.string   "redirect_url"
-    t.integer  "tweet_count"
-    t.integer  "word_count"
-    t.boolean  "hn_status"
-    t.index ["url"], name: "index_items_on_url", unique: true, using: :btree
-  end
 
   create_table "notes", force: :cascade do |t|
     t.string   "title",      default: "Note", null: false
@@ -55,15 +33,6 @@ ActiveRecord::Schema.define(version: 20180127220843) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sections_on_user_id", using: :btree
-  end
-
-  create_table "sessions", force: :cascade do |t|
-    t.string   "identifier"
-    t.string   "sources"
-    t.datetime "completed_to"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "read_count"
   end
 
   create_table "users", force: :cascade do |t|
