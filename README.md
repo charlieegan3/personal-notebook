@@ -1,4 +1,4 @@
-# POC Personal Notebook
+# Personal Notebook (prototype)
 
 This is a simple CRUD Rails app that can be deployed Heroku and used as a
 personal encrypted notebook. After creating an account and logging in one adds
